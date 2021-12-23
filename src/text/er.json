@@ -1,0 +1,54 @@
+{
+  "box1": {
+    "text": [
+      "Why did you break into my room?",
+      "Good thing that I leave all important things inside my boxes that only I know how to open."
+    ]
+  },
+
+  "bolt": {
+    "text": ["Scrreeeeech", "Bolt unscrewed"]
+  },
+  "hologram": {
+    "text": [
+      "It must be dire times for you to need access to my memory pieces.",
+      "Take this piece. However your adventure is not done yet.",
+      "The Memory Access Unit has not been power in a long time and needs some extra juice to power it up.",
+      "Bring what allows you to write to the place that controls the light.",
+      "Place it a top the box, and a hidden place you will find."
+    ]
+  },
+  "boxhint": {
+    "text": [
+      "You have one more piece to collect.",
+      "Take the tool in your hand and break the vase. There is more than meets the eye here."
+    ]
+  },
+  "can": "An empty watering can",
+  "statueYellow": "It’s a statue with a yellow stripe on it.",
+  "statueRed": "It’s a statue with a red stripe on it.",
+  "statueBlue": "It’s a statue with a blue stripe on it.",
+  "plant": "This plant hasn't been watered in a while",
+  "trash": "There's nothing in the trash",
+  "painting": "A detailed painting.",
+  "libraryNote": "I have been really interested in going here to grab some spices. Make sure to pick up a book for traveling purposes",
+  "leaveMain": "I should try to open the lockers first",
+  "spyroom": "The door is locked. It can only be opened from the inside.",
+  "electricalBox": "The electrical box is securely locked. You’ll need to find a way to open it.",
+  "motorcycle": "My friend from Germany sent this to me as a gift.",
+  "sewerDenied": "This vent seems to lead somewhere. The vent cover seems stuck.",
+  "portalDenied": "You do not seem to have the required pieces to get access the memories at the Memory Storage Unit",
+  "computerLibrary": "It seems that you can read some devices by inserting it into the slot.",
+  "matches": "Even in a cyberpunk world, fire remains a precious resource.",
+  "car": "Seems like the mechanic is quite fond of cars.",
+  "wrench": "Used to screw and unscrew things.",
+  "usb": "Don’t you know better than to stick random USBs into computers?",
+  "soup": "How old is this thing?",
+  "pearl": "If this was the real world, you could probably sell this for good money.",
+  "knife": "An ornate butterfly knife.",
+  "paperclip": "Good for prying things",
+  "brokenVase": "Oh it seems you have broken my prize possession. However, there might be more than what meets the eyes.",
+  "computerSpy": "The screen is just a background. It seems like we can insert something here to gain more information.",
+  "cities": "Each one of these cities is a memorable place I have gone to. The start of each adventure comes to be a part of my interests.",
+  "map": "I've traveled to many countries and my goal is to get to 50 in the next 5 years!"
+}

@@ -1,0 +1,123 @@
+@font-face {
+  font-family: "Bergen Mono";
+  src: url(../fonts/BergenMono-Bold.woff) format("woff");
+}
+
+div.login {
+  position: relative;
+  height: 100vh;
+  background-image: url(https://averycorp.s3.amazonaws.com/login_background.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow-y: hidden;
+}
+
+div.incorrect {
+  position: relative;
+  left: 15%;
+}
+
+.login-form {
+  position: relative;
+  left: 55%;
+  top: 36%;
+  width: 45%;
+  height: 60%;
+}
+
+#login-logo {
+  position: relative;
+  display: block;
+  width: 30%;
+  left: 15%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.login-label {
+  font-family: "Bergen Mono", Consolas, Menlo, sans-serif;
+  font-size: 1vw;
+  display: inline-block;
+  width: 15%;
+}
+
+.login-input {
+  font-family: "Bergen Mono", Consolas, Menlo, sans-serif;
+  font-size: small;
+  color: white;
+  border: 1px solid white;
+  background: rgba(255, 255, 255, 0);
+  width: 30%;
+  padding: 1% 1%;
+  margin: 1% 0%;
+}
+
+.login-button {
+  font-family: "Bergen Mono", Consolas, Menlo, sans-serif;
+  font-size: 1vw;
+  color: white;
+  border: 1px solid white;
+  background-color: rgba(255, 255, 255, 0);
+  position: relative;
+  display: block;
+  padding: 1%;
+  width: 10%;
+  top: 3%;
+  left: 25%;
+  cursor: pointer;
+}
+
+div.login-terminal {
+  position: relative;
+  height: 100vh;
+  background-color: #314;
+  /* black shadow at the top of the terminal */
+  background-image: radial-gradient(
+    ellipse 1000% 100% at 50% 90%,
+    transparent,
+    #111
+  );
+  background-position: center;
+  display: block;
+  /* shadow around the terminal */
+  box-shadow: inset 0 0 10em 1em rgba(0, 0, 0, 0.5);
+  /* prevents scanline from forming a scrollwheel */
+  overflow: hidden;
+}
+
+div.login-scanline {
+  margin-top: 0%;
+  width: 100%;
+  height: 60px;
+  position: relative;
+  z-index: 0;
+  pointer-events: none;
+  /* Safari 4.0 - 8.0 */
+  -webkit-animation: scan 12s linear 0s infinite; /* You may need to change this. If the bar goes by too quickly, increase 5s. */
+  animation: scan 12s linear 0s infinite; /* Same as above */
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.3)
+  ) !important;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes scan {
+  from {
+    transform: translateY(-2500%);
+  }
+  to {
+    transform: translateY(2500%);
+  } /* You may need to change this depending on the length of your terminal. If the scanline stops halfway, increase the second number.*/
+}
+
+@keyframes scan {
+  from {
+    transform: translateY(-2500%);
+  }
+  to {
+    transform: translateY(2500%);
+  } /* Same as above.*/
+}
