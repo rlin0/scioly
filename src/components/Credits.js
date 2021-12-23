@@ -2,7 +2,6 @@ import React, { Component } from "react"
 import { Button, Typography, TextField } from "@material-ui/core"
 import axios from "axios"
 import { Link } from "react-router-dom"
-import Puzzle from "./Puzzle"
 import { S3Url } from "../helpers"
 import Grid from "@material-ui/core/Grid"
 

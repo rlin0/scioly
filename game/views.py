@@ -58,7 +58,7 @@ def login(request):
         return JsonResponse({'success': True, 'loggedIn': False})
     except Exception as e:
         print(e)
-        return JsonResponse({'success': False})
+        return JsonResponse({'success': False, 'error': str(e)})
 
 
 @api_view(['POST'])

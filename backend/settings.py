@@ -76,19 +76,16 @@ REST_FRAMEWORK = {
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
-if os.environ.get('ENV') == "PROD":
-    DATABASES = {'default': dj_database_url.config(conn_max_age=500)}
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'postgres',
-            'USER': 'postgres',
-            'PASSWORD': 'averycorp',
-            'HOST': 'database-1.ci4absp9f7fm.us-east-2.rds.amazonaws.com',
-            'PORT': '5432',
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'averycorp',
+        'HOST': 'database-1.ci4absp9f7fm.us-east-2.rds.amazonaws.com',
+        'PORT': '5432',
     }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators

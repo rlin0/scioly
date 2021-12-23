@@ -1,4 +1,4 @@
-import { createMuiTheme } from "@material-ui/core/styles"
+import { createTheme } from "@material-ui/core/styles"
 import { purple, green, grey } from "@material-ui/core/colors"
 import OCRA from "../fonts/OcrA.ttf"
 import BabaPro from "../fonts/BabaPro-Bold.ttf"
@@ -32,7 +32,7 @@ const bergenmono = {
 }
 
 // This is still tentative!!!
-const AVERYCORP_THEME = createMuiTheme({
+const AVERYCORP_THEME = createTheme({
   // color palette
   palette: {
     type: "dark",
