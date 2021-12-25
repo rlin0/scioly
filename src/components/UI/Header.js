@@ -38,7 +38,7 @@ export default class Header extends Component {
       <AppBar position="sticky" color="secondary">
         <Toolbar>
           <SideBar />
-          <Typography variant="h6">
+          <Typography variant="h6" color="#ffffff" style={{ color: "white" }}>
             WELCOME, {this.props.username.toUpperCase()}. TEAM{" "}
             {this.props.team.toUpperCase()}.
           </Typography>
@@ -47,7 +47,7 @@ export default class Header extends Component {
             fontSize="large"
             viewBox="0 -50 240 240"
           />
-          <Button color="inherit" onClick={this.props.logout} size="large">
+          <Button color="#ffffff" onClick={this.props.logout} size="large">
             Logout
           </Button>
         </Toolbar>
@@ -109,10 +109,10 @@ function SideBar() {
           onClick={toggleDrawer(true)}
           className={classes.menuButton}
           edge="start"
-          color="inherit"
+          color="#ffffff"
           aria-label="sidebar"
         >
-          <MenuIcon />
+          <MenuIcon style={{ color: "white" }} />
         </IconButton>
         <Drawer anchor="left" open={state.isOpen} onClose={toggleDrawer(false)}>
           {list()}

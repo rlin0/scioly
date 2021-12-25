@@ -41,31 +41,31 @@ export default class Leaderboard extends Component {
             <>
                 <h1>Leaderboard</h1>
 
-                < Paper sx={{ width: '100%', overflow: 'hidden' }}>
-                    <TableContainer sx={{ maxHeight: 440 }}>
-                        <Table stickyHeader aria-label="sticky table">
-                            <TableHead>
-                                <TableRow>
-                                    {columns.map((column) => (
-                                        <TableCell
-                                            key={column.id}
-                                            align={column.align}
-                                            style={{ minWidth: column.minWidth }}
-                                        >
-                                            {column.label}
-                                        </TableCell>
-                                    ))}
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {this.state.teams
+                <TableContainer sx={{ maxHeight: 440 }}>
+                    <Table stickyHeader aria-label="sticky table">
+                        <TableHead>
+                            <TableRow>
+                                {columns.map((column) => (
+                                    <TableCell
+                                        key={column.id}
+                                        align={column.align}
+                                        style={{ minWidth: column.minWidth, fontWeight: "bold", fontSize: "large" }}
+                                    >
+                                        {column.label}
+                                    </TableCell>
+                                ))}
+                            </TableRow>
+                        </TableHead>
+                        <TableBody style={{ backgroundColor: "white" }}>
+                            {
+                                this.state.teams
                                     .map((row) => {
                                         return (
                                             <TableRow hover role="checkbox" tabIndex={-1}>
                                                 {columns.map((column) => {
                                                     const value = row[column.id];
                                                     return (
-                                                        <TableCell key={column.id} align={column.align}>
+                                                        <TableCell key={column.id} align={column.align} style={{ color: "#e65100" }}>
                                                             {column.format && typeof value === 'number'
                                                                 ? column.format(value)
                                                                 : value}
@@ -74,11 +74,11 @@ export default class Leaderboard extends Component {
                                                 })}
                                             </TableRow>
                                         );
-                                    })}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-                </Paper >
+                                    })
+                            }
+                        </TableBody>
+                    </Table>
+                </TableContainer>
             </>
         )
     }

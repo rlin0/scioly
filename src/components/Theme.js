@@ -1,5 +1,5 @@
 import { createTheme } from "@material-ui/core/styles"
-import { purple, green, grey } from "@material-ui/core/colors"
+import { orange, purple, green, grey } from "@material-ui/core/colors"
 import OCRA from "../fonts/OcrA.ttf"
 import BabaPro from "../fonts/BabaPro-Bold.ttf"
 import BergenMono from "../fonts/BergenMono-Bold.woff"
@@ -35,12 +35,12 @@ const bergenmono = {
 const AVERYCORP_THEME = createTheme({
   // color palette
   palette: {
-    type: "dark",
+    type: "light",
     primary: {
-      main: purple.A700,
+      main: orange.A700,
     },
     secondary: {
-      main: "#0a1015",
+      main: "#ff6f00",
     },
     error: {
       main: "#ed2924",
@@ -55,12 +55,12 @@ const AVERYCORP_THEME = createTheme({
       main: green.A400,
     },
     text: {
-      primary: grey[100],
-      secondary: grey[400],
+      primary: "#ffffff",
+      secondary: "#ffffff",
     },
     background: {
-      default: "#181818",
-      paper: "#252525",
+      default: "#ff9800",
+      paper: "#ff9800",
     },
   },
   typography: {
