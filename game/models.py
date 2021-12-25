@@ -37,6 +37,13 @@ class Team(models.Model):
         default=0, help_text='kth bit in binary represents if puzzle k solved')
     act = models.IntegerField(default=0, help_text='current act on')
 
+    start_ts = models.PositiveBigIntegerField(default=None,
+                                              blank=True,
+                                              null=True)
+    end_ts = models.PositiveBigIntegerField(default=None,
+                                            blank=True,
+                                            null=True)
+
     def __str__(self):
         """String for representing the Model object."""
         return self.name

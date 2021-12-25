@@ -20,11 +20,10 @@ class LockModal extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    const res = this.props.handleSubmit(this.state.code)
-    if (res === false) {
-      this.setState({ correct: false })
-    } else {
+    if (this.props.handleSubmit(this.state.code) === true) {
       this.setState({ correct: true })
+    } else {
+      this.setState({ correct: false })
     }
   }
 

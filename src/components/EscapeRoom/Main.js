@@ -123,15 +123,6 @@ class Main extends Component {
     )
   }
 
-  handlePortalSubmit = (code) => {
-    if (code === masterPW || code.toLowerCase() === "ice") {
-      this.props.putDone()
-      return true
-    } else {
-      return false
-    }
-  }
-
   render() {
     if (this.props.lockersUnlocked === null) return null
     return (
@@ -219,7 +210,7 @@ class Main extends Component {
           </div>
         </ZoomModal>
 
-        <LockModal style={portal} handleSubmit={this.handlePortalSubmit}>
+        <LockModal style={portal} handleSubmit={this.props.submitFinalPuzzle}>
           <TabBoxServer
             mcSpy={this.props.mcSpy}
             mcMechanic={this.props.mcMechanic}

@@ -23,21 +23,18 @@ import { setBit } from "./helpers.js"
 import "./App.css"
 import { CssBaseline } from "@material-ui/core"
 import Credits from "./components/Credits"
+import Leaderboard from "./components/Leaderboard"
 
 export default class App extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      act: 0,
       username: localStorage.getItem("username"),
       userId: localStorage.getItem("userId"),
       teamId: localStorage.getItem("teamId"),
       teamName: localStorage.getItem("teamName"),
-      role: localStorage.getItem("role"),
-
-      intro0Played: false,
-      intro2Played: false,
+      started: localStorage.getItem("started"),
     }
   }
 
@@ -46,7 +43,9 @@ export default class App extends Component {
       axios
         .get(`/api/team/${this.state.teamId}/`)
         .then((res) => {
-          this.setState({ act: parseInt(res.data.act) })
+          this.setState({
+            act: parseInt(res.data.act),
+          })
         })
         .catch((err) => {
           console.log(err)
@@ -54,20 +53,20 @@ export default class App extends Component {
     }
   }
 
-  login = (username, userId, teamId, teamName, role) => {
+  login = (username, userId, teamId, teamName, started) => {
     this.setState({
       username: username,
       userId: userId,
       teamId: teamId,
       teamName: teamName,
-      role: role,
+      started: started,
     })
     // store the user in localStorage
     localStorage.setItem("username", this.state.username)
     localStorage.setItem("userId", this.state.userId)
     localStorage.setItem("teamId", this.state.teamId)
     localStorage.setItem("teamName", this.state.teamName)
-    localStorage.setItem("role", this.state.role)
+    localStorage.setItem("started", this.state.started)
   }
 
   logout = () => {
@@ -76,8 +75,7 @@ export default class App extends Component {
       userId: null,
       teamId: null,
       teamName: null,
-      act: 0,
-      role: null,
+      started: false,
     })
     localStorage.clear()
   }
@@ -97,10 +95,19 @@ export default class App extends Component {
       })
   }
 
-  setIntroPlayed = (id) => {
-    this.setState({
-      [id]: true,
-    })
+  start = () => {
+    axios
+      .post(`/api/er/start`, {
+        teamId: this.state.teamId,
+      })
+      .then((res) => {
+        this.setState({ started: true })
+        localStorage.setItem("started", true)
+        console.log(res)
+      })
+      .catch((err) => {
+        console.log(err.response)
+      })
   }
 
   render() {
@@ -126,14 +133,21 @@ export default class App extends Component {
                       <Credits />
                     </Route>
 
-                    <Route exact path="/er">
+                    <Route exact path="/instructions">
                       <ERIntro />
                     </Route>
+
+                    <Route exact path="/leaderboard">
+                      <Leaderboard />
+                    </Route>
+
                     <Route exact path="/er/main">
                       <ER
                         comp={Main}
                         userId={this.state.userId}
                         teamId={this.state.teamId}
+                        started={this.state.started}
+                        start={this.start}
                       />
                     </Route>
                     <Route exact path="/er/mechanics">
@@ -141,6 +155,7 @@ export default class App extends Component {
                         comp={Mechanics}
                         userId={this.state.userId}
                         teamId={this.state.teamId}
+                        started={this.state.started}
                       />
                     </Route>
                     <Route exact path="/er/mechanics_closet">
@@ -148,6 +163,7 @@ export default class App extends Component {
                         comp={MechanicsCloset}
                         userId={this.state.userId}
                         teamId={this.state.teamId}
+                        started={this.state.started}
                       />
                     </Route>
                     <Route exact path="/er/lockers">
@@ -155,6 +171,7 @@ export default class App extends Component {
                         comp={Lockers}
                         userId={this.state.userId}
                         teamId={this.state.teamId}
+                        started={this.state.started}
                       />
                     </Route>
                     <Route exact path="/er/library">
@@ -162,6 +179,7 @@ export default class App extends Component {
                         comp={Library}
                         userId={this.state.userId}
                         teamId={this.state.teamId}
+                        started={this.state.started}
                       />
                     </Route>
 
@@ -170,6 +188,7 @@ export default class App extends Component {
                         comp={Spy}
                         userId={this.state.userId}
                         teamId={this.state.teamId}
+                        started={this.state.started}
                       />
                     </Route>
 
@@ -178,6 +197,7 @@ export default class App extends Component {
                         comp={Hallway1}
                         userId={this.state.userId}
                         teamId={this.state.teamId}
+                        started={this.state.started}
                       />
                     </Route>
                     <Route exact path="/er/hallway2">
@@ -185,6 +205,7 @@ export default class App extends Component {
                         comp={Hallway2}
                         userId={this.state.userId}
                         teamId={this.state.teamId}
+                        started={this.state.started}
                       />
                     </Route>
 
@@ -193,6 +214,7 @@ export default class App extends Component {
                         comp={Maintenance}
                         userId={this.state.userId}
                         teamId={this.state.teamId}
+                        started={this.state.started}
                       />
                     </Route>
                     <Route exact path="/er/meme">
@@ -200,6 +222,7 @@ export default class App extends Component {
                         comp={Meme}
                         userId={this.state.userId}
                         teamId={this.state.teamId}
+                        started={this.state.started}
                       />
                     </Route>
                     <Route exact path="/er/electrical">
@@ -207,6 +230,7 @@ export default class App extends Component {
                         comp={ElectricalBox}
                         userId={this.state.userId}
                         teamId={this.state.teamId}
+                        started={this.state.started}
                       />
                     </Route>
 
@@ -215,9 +239,10 @@ export default class App extends Component {
                         comp={Merchant}
                         userId={this.state.userId}
                         teamId={this.state.teamId}
+                        started={this.state.started}
                       />
                     </Route>
-                    <Redirect from="*" to="/er" />
+                    <Redirect from="*" to="/er/main" />
                   </Switch>
                 </div>
                 <div className="scanline"></div>

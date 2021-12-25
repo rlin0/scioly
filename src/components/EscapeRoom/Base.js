@@ -15,10 +15,18 @@ import styles from "./styles.module.css"
 import { withRouter } from "react-router-dom"
 import { S3Url, masterPW, setBit, countSetBits } from "../../helpers"
 import MC from "./MC"
+import ERIntro from "./ERIntro"
 
 const inventoryStyle = {
   position: "fixed",
   right: "10px",
+  bottom: "10px",
+  zIndex: 10,
+}
+
+const instructionsStyle = {
+  position: "fixed",
+  left: "10px",
   bottom: "10px",
   zIndex: 10,
 }
@@ -38,6 +46,7 @@ class ER extends Component {
     super(props)
     this.state = {
       open: false,
+      instructionsOpen: !this.props.started,
       selected: null,
       equipped: null,
       spyroomUnlocked: null,
@@ -117,8 +126,21 @@ class ER extends Component {
     this.setState({ mc: null })
   }
 
-  putDone = () => {
-    this.setState({ done: true })
+  submitFinalPuzzle = async (code) => {
+    axios
+      .post(`/api/er/end`, { answer: code, teamId: this.props.teamId })
+      .then((res) => {
+        console.log(res)
+        if (res.data.solved === true) {
+          this.setState({ done: true })
+          return true
+        } else {
+          return false
+        }
+      })
+      .catch((err) => {
+        console.error(err)
+      })
   }
 
   putMCMerchant = (id) => {
@@ -286,6 +308,14 @@ class ER extends Component {
     this.setState({ open: false })
   }
 
+  handleInstructionsClickOpen = () => {
+    this.setState({ instructionsOpen: true })
+  }
+
+  handleInstructionsClose = () => {
+    this.setState({ instructionsOpen: false })
+  }
+
   select = (e) => {
     this.setState({ selected: e.currentTarget.getAttribute("id") })
   }
@@ -368,6 +398,11 @@ class ER extends Component {
     window.location.reload()
   }
 
+  start = () => {
+    this.setState({ instructionsOpen: false })
+    this.props.start()
+  }
+
   renderItems = () => {
     return (
       <>
@@ -445,6 +480,7 @@ class ER extends Component {
   }
 
   render() {
+    if (!this.props.started) return <ERIntro start={this.start} />
     const Comp = this.props.comp
     const cursorStyle = this.state.equipped
       ? { cursor: `url(${S3Url}/er/${this.state.equipped}_cursor.png), auto` }
@@ -480,7 +516,7 @@ class ER extends Component {
             putMCSpy={this.putMCSpy}
             putMCMechanic={this.putMCMechanic}
             putMCMerchant={this.putMCMerchant}
-            putDone={this.putDone}
+            submitFinalPuzzle={this.submitFinalPuzzle}
           />
         </div>
         {this.state.mc !== null && (
@@ -520,6 +556,36 @@ class ER extends Component {
             <Button onClick={this.reset}>Reset</Button>
           </DialogActions>
         </Dialog>
+        {/* <Button
+          style={instructionsStyle}
+          onClick={this.handleInstructionsClickOpen}
+        >
+          Instructions
+        </Button>
+        <Dialog
+          open={this.state.instructionsOpen}
+          onClose={this.handleInstructionsClose}
+          aria-labelledby="form-dialog-title"
+        >
+          <DialogTitle id="form-dialog-title" style={{ textAlign: "center" }}>
+            Welcome
+            <IconButton
+              aria-label="close"
+              style={styles.closeButton}
+              onClick={this.handleInstructionsClose}
+            >
+              <CloseIcon />
+            </IconButton>
+          </DialogTitle>
+          <DialogContent>
+            instructions here
+          </DialogContent>
+          {!this.props.started &&
+            <DialogActions>
+              <Button onClick={this.start}>Start</Button>
+            </DialogActions>
+          }
+        </Dialog> */}
       </div>
     )
   }

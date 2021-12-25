@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.http import JsonResponse
 from datetime import timedelta
 from django.utils import timezone
+import time
 
 
 class ProfileView(viewsets.ModelViewSet):
@@ -51,7 +52,7 @@ def login(request):
                 'username': username,
                 'teamId': res.team.id if res.team else None,
                 'teamName': res.team.name if res.team else None,
-                'role': res.role
+                'role': res.role,
             }
         })
     except Profile.DoesNotExist:
@@ -181,4 +182,52 @@ def reset(request):
             'success': True,
         })
     except:
+        return JsonResponse({'success': False})
+
+
+@api_view(['POST'])
+def start(request):
+    try:
+        team_id = int(request.data.get('teamId'))
+        t = Team.objects.get(id=team_id)
+        if t.start_ts == None:
+            t.start_ts = time.time()
+            t.save()
+        return JsonResponse({'success': True})
+    except Exception as e:
+        print(e)
+        return JsonResponse({'success': False})
+
+
+@api_view(['POST'])
+def end(request):
+    try:
+        answer = request.data.get('answer')
+        print(answer)
+        if answer != 'ice':
+            return JsonResponse({'success': True, 'solved': False})
+        team_id = int(request.data.get('teamId'))
+        t = Team.objects.get(id=team_id)
+        if t.end_ts == None:
+            t.end_ts = time.time()
+            t.save()
+        return JsonResponse({'success': True, 'solved': True})
+    except Exception as e:
+        print(e)
+        return JsonResponse({'success': False})
+
+
+@api_view(['GET'])
+def leader(request):
+    try:
+        teams = {}
+        for t in Team.objects.all():
+            if t.start_ts is not None and t.end_ts is not None:
+                teams[t.name] = t.end_ts - t.start_ts
+        sorted_teams = sorted(teams.items(), key=lambda kv: -kv[1])
+        sorted_teams = [[t[0], str(timedelta(seconds=t[1]))]
+                        for t in sorted_teams]
+        return JsonResponse({'success': True, 'teams': sorted_teams})
+    except Exception as e:
+        print(e)
         return JsonResponse({'success': False})

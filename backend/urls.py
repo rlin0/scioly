@@ -21,5 +21,8 @@ urlpatterns = [
     path(r'api/puzzle/submit_answer', views.submit_answer),
     path(r'api/puzzle/submit_crossword', views.submit_crossword),
     path(r'api/er/reset', views.reset),
+    path(r'api/er/start', views.start),
+    path(r'api/er/end', views.end),
+    path(r'api/er/leader', views.leader),
     re_path('.*', TemplateView.as_view(template_name='index.html')),
 ]
