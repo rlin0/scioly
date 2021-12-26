@@ -7,6 +7,7 @@ from django.http import JsonResponse
 from datetime import timedelta
 from django.utils import timezone
 import time
+import secrets
 
 
 class ProfileView(viewsets.ModelViewSet):
@@ -57,6 +58,32 @@ def login(request):
         })
     except Profile.DoesNotExist:
         return JsonResponse({'success': True, 'loggedIn': False})
+    except Exception as e:
+        print(e)
+        return JsonResponse({'success': False, 'error': str(e)})
+
+
+@api_view(['POST'])
+def register(request):
+    try:
+        name = request.data.get('name')
+        n = int(request.data.get('n'))
+        if Team.objects.filter(name=name).exists():
+            return JsonResponse({'success': True, 'taken': True})
+        t = Team.objects.create(name=name)
+        users = []
+        for i in range(n):
+            username = f'{name}{i}'
+            password = secrets.token_urlsafe(5)
+            users.append([username, password])
+            u = Profile.objects.create(username=username,
+                                       password=password,
+                                       team_id=t.id)
+        return JsonResponse({
+            'success': True,
+            'taken': False,
+            'users': users,
+        })
     except Exception as e:
         print(e)
         return JsonResponse({'success': False, 'error': str(e)})

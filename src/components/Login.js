@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import axios from "axios"
 import { S3Url } from "../helpers.js"
 import "./Login.css"
+import { Link } from "react-router-dom"
 
 export default class Login extends Component {
   constructor(props) {
@@ -49,8 +50,10 @@ export default class Login extends Component {
               LOGIN ID{" "}
             </label>
             <input
+              required
               type="text"
               value={this.state.username}
+              id="username"
               className="login-input"
               onChange={({ target }) =>
                 this.setState({ username: target.value })
@@ -61,8 +64,10 @@ export default class Login extends Component {
                 PASSWORD{" "}
               </label>
               <input
+                required
                 type="password"
                 value={this.state.password}
+                id="password"
                 className="login-input"
                 onChange={({ target }) =>
                   this.setState({ password: target.value })
@@ -75,6 +80,9 @@ export default class Login extends Component {
             <button type="submit" className="login-button">
               LOGIN
             </button>
+            <Link to='/register'><button className="login-button">
+              REGISTER YOUR TEAM
+            </button></Link>
           </form>
         </div>
         <div className="login-scanline" />

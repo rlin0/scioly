@@ -39,10 +39,8 @@ export default class Leaderboard extends Component {
     render() {
         return (
             <>
-                <h1>Leaderboard</h1>
-
                 <TableContainer sx={{ maxHeight: 440 }}>
-                    <Table stickyHeader aria-label="sticky table">
+                    <Table stickyHeader aria-label="sticky table" style={{ width: "80%", marginTop: "5%", marginLeft: "auto", marginRight: "auto" }} className="center">
                         <TableHead>
                             <TableRow>
                                 {columns.map((column) => (

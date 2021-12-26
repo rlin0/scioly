@@ -7,8 +7,14 @@ class Profile(models.Model):
     username = models.CharField(max_length=20, unique=True)
     password = models.CharField(max_length=20)
 
-    first_name = models.CharField(max_length=20, help_text='First name')
-    last_name = models.CharField(max_length=20, help_text='Last name')
+    first_name = models.CharField(max_length=20,
+                                  blank=True,
+                                  null=True,
+                                  help_text='First name')
+    last_name = models.CharField(max_length=20,
+                                 blank=True,
+                                 null=True,
+                                 help_text='Last name')
     team = models.ForeignKey('Team',
                              on_delete=models.SET_NULL,
                              blank=True,

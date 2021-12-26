@@ -15,6 +15,7 @@ urlpatterns = [
     path(r'admin/', admin.site.urls),
     path(r'api/', include(router.urls)),
     path(r'api/login/', views.login),
+    path(r'api/register/', views.register),
     path(r'api/madlib/post', views.post_madlib),
     path(r'api/madlib/get', views.get_madlib),
     path(r'api/puzzle/get_solved', views.get_solved),

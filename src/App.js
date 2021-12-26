@@ -24,6 +24,7 @@ import "./App.css"
 import { CssBaseline } from "@material-ui/core"
 import Credits from "./components/Credits"
 import Leaderboard from "./components/Leaderboard"
+import Register from "./components/Register"
 
 export default class App extends Component {
   constructor(props) {
@@ -116,7 +117,25 @@ export default class App extends Component {
         <CssBaseline />
 
         {this.state.userId === null ? (
-          <Login login={this.login} />
+          <>
+            <BrowserRouter>
+              <Switch>
+                <Route exact path="/">
+                  <Login login={this.login} />
+                </Route>
+                <Route exact path="/register">
+                  <Register />
+                </Route>
+                <Route exact path="/credits">
+                  <Credits />
+                </Route>
+                <Route exact path="/instructions">
+                  <ERIntro />
+                </Route>
+                <Redirect from="*" to="/" />
+              </Switch>
+            </BrowserRouter>
+          </>
         ) : (
           <>
             <CssBaseline />

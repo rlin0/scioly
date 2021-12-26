@@ -23,7 +23,7 @@ div.incorrect {
   left: 55%;
   top: 36%;
   width: 45%;
-  height: 60%;
+  height: 80%;
 }
 
 #login-logo {
@@ -62,7 +62,7 @@ div.incorrect {
   position: relative;
   display: block;
   padding: 1%;
-  width: 10%;
+  width: 15%;
   top: 3%;
   left: 25%;
   cursor: pointer;
