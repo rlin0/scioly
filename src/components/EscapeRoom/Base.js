@@ -126,22 +126,22 @@ class ER extends Component {
     this.setState({ mc: null })
   }
 
-  submitFinalPuzzle = async (code) => {
-    axios
-      .post(`/api/er/end`, { answer: code, teamId: this.props.teamId })
-      .then((res) => {
-        console.log(res)
-        if (res.data.solved === true) {
+  submitFinalPuzzle = (code) => {
+    if (code === 'ice') {
+      axios
+        .post(`/api/er/end`, { answer: code, teamId: this.props.teamId })
+        .then((res) => {
           this.setState({ done: true })
           this.props.end(res.data.end_ts)
           return true
-        } else {
-          return false
-        }
-      })
-      .catch((err) => {
-        console.error(err)
-      })
+        })
+        .catch((err) => {
+          console.error(err)
+        })
+    } else {
+      return false
+    }
+
   }
 
   putMCMerchant = (id) => {

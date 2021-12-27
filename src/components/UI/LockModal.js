@@ -20,10 +20,13 @@ class LockModal extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    if (this.props.handleSubmit(this.state.code) === true) {
-      this.setState({ correct: true })
-    } else if (this.props.handleSubmit(this.state.code) === false) {
-      this.setState({ correct: false })
+    switch (this.props.handleSubmit(this.state.code)) {
+      case true:
+        this.setState({ correct: true })
+        break;
+      case false:
+        this.setState({ correct: false })
+        break;
     }
   }
 
@@ -38,7 +41,7 @@ class LockModal extends Component {
   }
 
   handleModalClose = () => {
-    this.setState({ modalOpen: false })
+    this.setState({ modalOpen: false, code: null, correct: null })
   }
 
   display = () => {

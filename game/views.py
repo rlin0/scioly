@@ -229,10 +229,9 @@ def start(request):
 @api_view(['POST'])
 def end(request):
     try:
-        answer = request.data.get('answer')
-        print(answer)
-        if answer != 'ice':
-            return JsonResponse({'success': True, 'solved': False})
+        # answer = request.data.get('answer')
+        # if answer != 'ice':
+        #     return JsonResponse({'success': True, 'solved': False})
         team_id = int(request.data.get('teamId'))
         t = Team.objects.get(id=team_id)
         if t.end_ts == None:
@@ -255,7 +254,7 @@ def leader(request):
         for t in Team.objects.all():
             if t.start_ts is not None and t.end_ts is not None:
                 teams[t.name] = t.end_ts - t.start_ts
-        sorted_teams = sorted(teams.items(), key=lambda kv: -kv[1])
+        sorted_teams = sorted(teams.items(), key=lambda kv: kv[1])
         sorted_teams = [[t[0], str(timedelta(seconds=t[1]))]
                         for t in sorted_teams]
         return JsonResponse({'success': True, 'teams': sorted_teams})
