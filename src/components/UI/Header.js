@@ -11,7 +11,6 @@ import Drawer from "@material-ui/core/Drawer"
 import List from "@material-ui/core/List"
 import Divider from "@material-ui/core/Divider"
 import { ListItemLink } from "./Links"
-import { ReactComponent as AverycorpLogo } from "../../images/logo_A_fill_w.svg"
 
 const menuLinks = [
   {
@@ -33,20 +32,49 @@ const menuLinks = [
 ]
 
 export default class Header extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      time: null,
+    }
+  }
+
+  updateTime = () => {
+    var end_ts = null
+    if (this.props.end_ts === null) {
+      end_ts = Math.floor(Date.now() / 1000)
+    } else {
+      end_ts = this.props.end_ts
+    }
+    var sec_num = end_ts - this.props.start_ts
+    var hours = Math.floor(sec_num / 3600)
+    var minutes = Math.floor((sec_num - (hours * 3600)) / 60)
+    var seconds = sec_num - (hours * 3600) - (minutes * 60)
+
+    if (hours < 10) { hours = "0" + hours }
+    if (minutes < 10) { minutes = "0" + minutes }
+    if (seconds < 10) { seconds = "0" + seconds }
+    const s = hours + ':' + minutes + ':' + seconds
+
+    this.setState({ time: hours + ':' + minutes + ':' + seconds })
+  }
+
+  componentDidMount() {
+    this.interval = setInterval(() => {
+      this.updateTime()
+    }, 1000)
+  }
+
   render() {
     return (
       <AppBar position="sticky" color="secondary">
         <Toolbar>
           <SideBar />
-          <Typography variant="h6" color="#ffffff" style={{ color: "white" }}>
+          <Typography variant="h6" style={{ color: "white" }}>
             WELCOME, {this.props.username.toUpperCase()}. TEAM{" "}
             {this.props.team.toUpperCase()}.
           </Typography>
-          <SvgIcon
-            component={AverycorpLogo}
-            fontSize="large"
-            viewBox="0 -50 240 240"
-          />
+          {this.props.start_ts != null && this.state.time != null && <h4 style={{ color: "white", fontFamily: "Bergen Mono" }}>{this.state.time}</h4>}
           <Button color="#ffffff" onClick={this.props.logout} size="large">
             Logout
           </Button>

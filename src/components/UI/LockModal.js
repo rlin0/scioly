@@ -22,7 +22,7 @@ class LockModal extends Component {
     e.preventDefault()
     if (this.props.handleSubmit(this.state.code) === true) {
       this.setState({ correct: true })
-    } else {
+    } else if (this.props.handleSubmit(this.state.code) === false) {
       this.setState({ correct: false })
     }
   }

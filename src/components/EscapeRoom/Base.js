@@ -133,6 +133,7 @@ class ER extends Component {
         console.log(res)
         if (res.data.solved === true) {
           this.setState({ done: true })
+          this.props.end(res.data.end_ts)
           return true
         } else {
           return false
@@ -487,7 +488,7 @@ class ER extends Component {
       : { cursor: "default" }
 
     if (this.state.done) {
-      return <p>Congrats you have escaped!</p>
+      return <h1>Congrats you have escaped!</h1>
     }
 
     return (

@@ -218,12 +218,12 @@ def start(request):
         team_id = int(request.data.get('teamId'))
         t = Team.objects.get(id=team_id)
         if t.start_ts == None:
-            t.start_ts = time.time()
+            t.start_ts = int(time.time())
             t.save()
-        return JsonResponse({'success': True})
+        return JsonResponse({'success': True, 'start_ts': t.start_ts})
     except Exception as e:
         print(e)
-        return JsonResponse({'success': False})
+        return JsonResponse({'success': False, 'error': str(e)})
 
 
 @api_view(['POST'])
@@ -236,9 +236,13 @@ def end(request):
         team_id = int(request.data.get('teamId'))
         t = Team.objects.get(id=team_id)
         if t.end_ts == None:
-            t.end_ts = time.time()
+            t.end_ts = int(time.time())
             t.save()
-        return JsonResponse({'success': True, 'solved': True})
+        return JsonResponse({
+            'success': True,
+            'solved': True,
+            'end_ts': t.end_ts
+        })
     except Exception as e:
         print(e)
         return JsonResponse({'success': False})

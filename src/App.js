@@ -36,22 +36,32 @@ export default class App extends Component {
       teamId: localStorage.getItem("teamId"),
       teamName: localStorage.getItem("teamName"),
       started: localStorage.getItem("started"),
+      start_ts: null,
+      end_ts: null,
     }
   }
 
-  componentDidMount() {
+  getTimes = () => {
     if (this.state.teamId !== null) {
       axios
         .get(`/api/team/${this.state.teamId}/`)
         .then((res) => {
           this.setState({
-            act: parseInt(res.data.act),
+            start_ts: res.data.start_ts,
+            end_ts: res.data.end_ts,
           })
         })
         .catch((err) => {
           console.log(err)
         })
     }
+  }
+
+  componentDidMount() {
+    this.getTimes()
+  }
+  componentDidUpdate() {
+    this.getTimes()
   }
 
   login = (username, userId, teamId, teamName, started) => {
@@ -77,6 +87,8 @@ export default class App extends Component {
       teamId: null,
       teamName: null,
       started: false,
+      start_ts: null,
+      end_ts: null,
     })
     localStorage.clear()
   }
@@ -89,7 +101,6 @@ export default class App extends Component {
       })
       .then((res) => {
         this.setState({ act: updated })
-        console.log(res)
       })
       .catch((err) => {
         console.log(err.response)
@@ -102,13 +113,21 @@ export default class App extends Component {
         teamId: this.state.teamId,
       })
       .then((res) => {
-        this.setState({ started: true })
-        localStorage.setItem("started", true)
-        console.log(res)
+        if (res.data.success) {
+          this.setState({ started: true, start_ts: res.data.start_ts })
+          localStorage.setItem("started", true)
+        }
+        else {
+          console.log(res)
+        }
       })
       .catch((err) => {
         console.log(err.response)
       })
+  }
+
+  end = (ts) => {
+    this.setState({ end_ts: ts })
   }
 
   render() {
@@ -126,12 +145,6 @@ export default class App extends Component {
                 <Route exact path="/register">
                   <Register />
                 </Route>
-                <Route exact path="/credits">
-                  <Credits />
-                </Route>
-                <Route exact path="/instructions">
-                  <ERIntro />
-                </Route>
                 <Redirect from="*" to="/" />
               </Switch>
             </BrowserRouter>
@@ -146,6 +159,8 @@ export default class App extends Component {
                     username={this.state.username}
                     team={this.state.teamName}
                     logout={this.logout}
+                    start_ts={this.state.start_ts}
+                    end_ts={this.state.end_ts}
                   />
                   <Switch>
                     <Route exact path="/credits">
@@ -167,6 +182,7 @@ export default class App extends Component {
                         teamId={this.state.teamId}
                         started={this.state.started}
                         start={this.start}
+                        end={this.end}
                       />
                     </Route>
                     <Route exact path="/er/mechanics">
