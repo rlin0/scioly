@@ -15,7 +15,6 @@ import Hallway1 from "./components/EscapeRoom/Hallway1"
 import Hallway2 from "./components/EscapeRoom/Hallway2"
 import Maintenance from "./components/EscapeRoom/Maintenance"
 import ElectricalBox from "./components/EscapeRoom/ElectricalBox"
-import Meme from "./components/EscapeRoom/Meme"
 import Merchant from "./components/EscapeRoom/Merchant"
 import { ThemeProvider } from "@material-ui/core/styles"
 import AVERYCORP_THEME from "./components/Theme"
@@ -60,9 +59,9 @@ export default class App extends Component {
   componentDidMount() {
     this.getTimes()
   }
-  componentDidUpdate() {
-    this.getTimes()
-  }
+  // componentDidUpdate() {
+  //   this.getTimes()
+  // }
 
   login = (username, userId, teamId, teamName, started) => {
     this.setState({
@@ -137,6 +136,7 @@ export default class App extends Component {
 
         {this.state.userId === null ? (
           <>
+
             <BrowserRouter>
               <Switch>
                 <Route exact path="/">
@@ -145,9 +145,10 @@ export default class App extends Component {
                 <Route exact path="/register">
                   <Register />
                 </Route>
-                <Redirect from="*" to="/" />
               </Switch>
+              <Redirect to="/" />
             </BrowserRouter>
+
           </>
         ) : (
           <>
@@ -252,14 +253,7 @@ export default class App extends Component {
                         started={this.state.started}
                       />
                     </Route>
-                    <Route exact path="/er/meme">
-                      <ER
-                        comp={Meme}
-                        userId={this.state.userId}
-                        teamId={this.state.teamId}
-                        started={this.state.started}
-                      />
-                    </Route>
+
                     <Route exact path="/er/electrical">
                       <ER
                         comp={ElectricalBox}
@@ -277,7 +271,7 @@ export default class App extends Component {
                         started={this.state.started}
                       />
                     </Route>
-                    <Redirect from="*" to="/er/main" />
+                    <Redirect exact from="/" to="/er/main" />
                   </Switch>
                 </div>
                 <div className="scanline"></div>

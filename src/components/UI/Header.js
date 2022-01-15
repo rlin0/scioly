@@ -19,7 +19,7 @@ const menuLinks = [
   },
   {
     label: "escape room",
-    link: "/er",
+    link: "/er/main",
   },
   {
     label: "leaderboard",

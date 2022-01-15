@@ -28,17 +28,6 @@ const statue = {
   overflow: "hidden",
 }
 
-const note = {
-  left: "25%",
-  top: "72%",
-  width: "2.08%",
-  height: "2.5%",
-  position: "absolute",
-  display: "block",
-  zIndex: "5",
-  overflow: "hidden",
-}
-
 export default class Maintenance extends Component {
   constructor(props) {
     super(props)
@@ -98,13 +87,7 @@ export default class Maintenance extends Component {
         )}
 
         {this.state.candleLit ? this.litCandle() : this.candle()}
-        <ZoomModal style={note}>
-          <img
-            src={`${S3Url}/er/meme_note.png`}
-            alt="XD"
-            style={{ width: "500px", height: "300px" }}
-          />
-        </ZoomModal>
+
       </>
     )
   }

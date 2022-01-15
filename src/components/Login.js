@@ -45,7 +45,6 @@ export default class Login extends Component {
       <div className="login-terminal">
         <div className="login">
           <form onSubmit={this.handleSubmit} className="login-form">
-            <img src={S3Url + "/logo2_fill_w.svg"} alt="logo" id="login-logo" />
             <label htmlFor="username" className="login-label">
               LOGIN ID{" "}
             </label>

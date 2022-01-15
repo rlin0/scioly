@@ -126,22 +126,19 @@ class ER extends Component {
     this.setState({ mc: null })
   }
 
-  submitFinalPuzzle = (code) => {
-    if (code === 'ice') {
+  submitFinalPuzzle = () => {
+    console.log("clicked")
+    if (this.state.mcMechanic == 7 && this.state.mcMerchant == 7 && this.state.mcMerchant == 7) {
       axios
-        .post(`/api/er/end`, { answer: code, teamId: this.props.teamId })
+        .post(`/api/er/end`, { teamId: this.props.teamId })
         .then((res) => {
           this.setState({ done: true })
           this.props.end(res.data.end_ts)
-          return true
         })
         .catch((err) => {
           console.error(err)
         })
-    } else {
-      return false
     }
-
   }
 
   putMCMerchant = (id) => {
@@ -486,10 +483,6 @@ class ER extends Component {
     const cursorStyle = this.state.equipped
       ? { cursor: `url(${S3Url}/er/${this.state.equipped}_cursor.png), auto` }
       : { cursor: "default" }
-
-    if (this.state.done) {
-      return <h1>Congrats you have escaped!</h1>
-    }
 
     return (
       <div style={cursorStyle}>

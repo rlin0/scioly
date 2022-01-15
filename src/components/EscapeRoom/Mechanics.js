@@ -86,7 +86,7 @@ export default class Mechanics extends Component {
         />
         <LockModal style={lockedCloset} handleSubmit={this.handleClosetSubmit}>
           <p>
-            If you can solve my riddle, then you can take a look at my closet.
+            Adding a twist to We’ve Got Your Number…
             Riddle: Given eight eights (8, 8, 8, 8, 8, 8, 8, 8), you can arrange
             them to create any numbers you want and use +. How can you get 1000?
             (no spaces, order numbers from greatest to least)
@@ -193,7 +193,7 @@ export default class Mechanics extends Component {
             <img src={S3Url + "/er/jigsaw/Gear.png"} usemap="#image-map" />
             <map name="image-map">
               <area
-                coords="211,234,296,206,266,357,390,327,252,464,176,390"
+                coords="200,205,261,225,217,304,222,420,153,383,105,321"
                 shape="poly"
                 onClick={() => this.props.putMCMechanic(2)}
               />

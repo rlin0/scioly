@@ -11,13 +11,10 @@ export default class Credits extends Component {
       <>
         <Grid container spacing={3}>
           <Grid item xs={6}>
-            <img src={`${S3Url}/shirt.png`} style={{ width: "100%" }} />
-          </Grid>
-          <Grid item xs={6}>
-            <h2> artwork/design </h2>
-            <p>James</p>
+            <h2> puzzles + artwork/design </h2>
+            <p>James Park, David Zheng</p>
             <h2> website </h2>
-            <p>Rachel</p>
+            <p>Rachel Lin</p>
           </Grid>
         </Grid>
       </>

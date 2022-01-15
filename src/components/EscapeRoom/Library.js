@@ -140,30 +140,30 @@ export default class Library extends Component {
 
         <ZoomModal style={bookOrange}>
           <img
-            src={S3Url + "/er/book_canals.png"}
-            alt="book canals"
+            src={S3Url + "/er/orange_book.png"}
+            alt="orange book"
             style={{ width: "500px", height: "600px" }}
           />
         </ZoomModal>
         <ZoomModal style={bookRed}>
           <img
-            src={S3Url + "/er/boba_book.png"}
-            alt="book boba"
+            src={S3Url + "/er/red_book.png"}
+            alt="red book"
             style={{ width: "500px", height: "600px" }}
           />
         </ZoomModal>
         <ZoomModal style={bookYellow}>
           <img
-            src={S3Url + "/er/book_egypt.png"}
-            alt="book egypt"
+            src={S3Url + "/er/yellow_book.png"}
+            alt="yellow book"
             style={{ width: "500px", height: "600px" }}
             onClick={this.handleBookClick}
           />
         </ZoomModal>
         <ZoomModal style={bookBlue}>
           <img
-            src={S3Url + "/er/book_japan.png"}
-            alt="book japan"
+            src={S3Url + "/er/blue_book.png"}
+            alt="blue book"
             style={{ width: "500px", height: "600px" }}
           />
         </ZoomModal>

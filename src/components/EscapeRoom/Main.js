@@ -35,10 +35,10 @@ const hallway2 = {
 }
 
 const portal = {
-  left: "36.08%",
-  top: "58.13%",
-  width: "2.42%",
-  height: "4.63%",
+  left: "55.42%",
+  top: "58.25%",
+  width: "1.67%",
+  height: "4.13%",
   position: "absolute",
   display: "block",
   zIndex: "5",
@@ -161,62 +161,23 @@ class Main extends Component {
         )}
         <ZoomModal style={monitor}>
           <p>
-            The server room door can only be opened with the help of memory
-            chips scattered around the area. These memory chips belong to 3
-            AveryCorp employees that are tired of the corporation’s rule over
-            everything. There are 9 chips total, 3 each of a color: you’ll need
-            to find all of them in order to unlock the server room door. <br />
-            Click on a door to move from room to room. Some rooms are locked and
-            you’ll need to either enter a code on the number pad next to the
-            door, or find another way inside. Certain items can be picked up and
-            will be added to your inventory (bottom right button). To equip an
-            item, go into the inventory, click on an item, then press ‘equip’.
-            To unequip it, simply press ‘unequip.’
+            The exit to the headquarters can only be opened with the help of several access cards
+            scattered around the area. These access cards belong to 3 teammates that have left for the day.
+            There are 9 cards total, 3 each of a color: find all of them to unlock the exit from the main
+            room. Click on a door to move from room to room. Some rooms are locked and you’ll need to either
+            enter a code on the number pad next to the door, or find another way inside. Certain items can
+            be picked up and will be added to your inventory (accessed by clicking the button on the bottom
+            right). To equip and item, go into the inventory, click on an item, then press ‘equip’.
+            To unequip it, simply press ‘unequip’. If you ever feel starting from the beginning, you can
+            reset everything by pressing ‘reset’.
           </p>
         </ZoomModal>
-        <ZoomModal className={styles.tablet}>
-          <div
-            style={{
-              backgroundImage: `url(${S3Url + "/er/tablet_screen.png"})`,
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "100% 100%",
-              height: "700px",
-              width: "600px",
-            }}
-          >
-            <TabBox
-              left={
-                <img
-                  src={S3Url + "/er/spy_dossier.png"}
-                  alt="spy dossier"
-                  style={{ width: "500px", height: "500px" }}
-                />
-              }
-              center={
-                <img
-                  src={S3Url + "/er/merchant_dossier.png"}
-                  alt="merchant dossier"
-                  style={{ width: "500px", height: "500px" }}
-                />
-              }
-              right={
-                <img
-                  src={S3Url + "/er/mechanic_dossier.png"}
-                  alt="mechanic dossier"
-                  style={{ width: "500px", height: "500px" }}
-                />
-              }
-            />
-          </div>
-        </ZoomModal>
-
-        <LockModal style={portal} handleSubmit={this.props.submitFinalPuzzle}>
-          <TabBoxServer
-            mcSpy={this.props.mcSpy}
-            mcMechanic={this.props.mcMechanic}
-            mcMerchant={this.props.mcMerchant}
-          />
-        </LockModal>
+        <div onClick={this.props.submitFinalPuzzle}>
+          <ZoomModal style={portal} >
+            {this.props.done ? <h1>You have now collected all the pieces just in time to leave and go to the awards ceremony! Congratulations!</h1> :
+              <h1>You don't seem to have all the keys yet. Keep looking!</h1>}
+          </ZoomModal>
+        </div>
       </>
     )
   }

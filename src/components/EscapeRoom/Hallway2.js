@@ -5,10 +5,10 @@ import LockModal from "../UI/LockModal"
 import Window from "../UI/Window"
 
 const mainRoom = {
-  left: "94.92%",
-  top: "43.63%",
-  width: "5.08%",
-  height: "36.13%",
+  left: "97.92%",
+  top: "42.88%",
+  width: "1.92%",
+  height: "35%",
   position: "absolute",
   display: "block",
   zIndex: "5",
@@ -17,9 +17,9 @@ const mainRoom = {
 
 const maintenanceRoom = {
   left: "0%",
-  top: "42.63%",
-  width: "2%",
-  height: "34.88%",
+  top: "43.88%",
+  width: "4.92%",
+  height: "36.38%",
   position: "absolute",
   display: "block",
   zIndex: "5",
@@ -27,21 +27,10 @@ const maintenanceRoom = {
 }
 
 const mechanicsRoom = {
-  left: "14.25%",
-  top: "57.13%",
-  width: "2.42%",
-  height: "5.25%",
-  position: "absolute",
-  display: "block",
-  zIndex: "5",
-  overflow: "hidden",
-}
-
-const memeRoom = {
-  left: "51.92%",
-  top: "57%",
-  width: "2.42%",
-  height: "5.25%",
+  left: "45.58%",
+  top: "57.25%",
+  width: "2.67%",
+  height: "5%",
   position: "absolute",
   display: "block",
   zIndex: "5",
@@ -49,10 +38,10 @@ const memeRoom = {
 }
 
 const window = {
-  left: "30.08%",
+  left: "14.5%",
   top: "50.25%",
   width: "17.75%",
-  height: "14%",
+  height: "14.12%",
   position: "absolute",
   display: "block",
   zIndex: "5",
@@ -60,10 +49,10 @@ const window = {
 }
 
 const memeWindow = {
-  left: "67.75%",
-  top: "49.88%",
+  left: "52.08%",
+  top: "50.25%",
   width: "17.75%",
-  height: "14.38%",
+  height: "14%",
   position: "absolute",
   display: "block",
   zIndex: "5",
@@ -114,12 +103,6 @@ export default class Hallway2 extends Component {
           <Link style={mechanicsRoom} to="/er/mechanics" />
         ) : (
           this.lockedMechanics()
-        )}
-
-        {this.props.memeUnlocked ? (
-          <Link style={memeRoom} to="/er/meme" />
-        ) : (
-          <LockModal style={memeRoom} handleSubmit={this.handleSubmitMeme} />
         )}
       </>
     )
