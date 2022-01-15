@@ -9,12 +9,12 @@ export default class Credits extends Component {
   render() {
     return (
       <>
-        <Grid container spacing={3}>
+        <Grid container spacing={3} justify="center">
           <Grid item xs={6}>
-            <h2> puzzles + artwork/design </h2>
-            <p>James Park, David Zheng</p>
-            <h2> website </h2>
-            <p>Rachel Lin</p>
+            <h1 style={{ "color": "#b36200" }}> puzzles + artwork/design </h1>
+            <h2 style={{ "color": "#b36200" }}>James Park, David Zheng</h2>
+            <h1 style={{ "color": "#b36200" }}> website </h1>
+            <h2 style={{ "color": "#b36200" }}>Rachel Lin</h2>
           </Grid>
         </Grid>
       </>
