@@ -75,7 +75,7 @@ export default class Header extends Component {
             {this.props.team.toUpperCase()}.
           </Typography>
           {this.props.start_ts != null && this.state.time != null && <h4 style={{ color: "white", fontFamily: "Bergen Mono" }}>{this.state.time}</h4>}
-          <Button color="#ffffff" onClick={this.props.logout} size="large">
+          <Button onClick={this.props.logout} size="large">
             Logout
           </Button>
         </Toolbar>
@@ -137,7 +137,6 @@ function SideBar() {
           onClick={toggleDrawer(true)}
           className={classes.menuButton}
           edge="start"
-          color="#ffffff"
           aria-label="sidebar"
         >
           <MenuIcon style={{ color: "white" }} />
