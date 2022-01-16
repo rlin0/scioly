@@ -20,7 +20,7 @@ export default class Jigsaw extends Component {
     var pieces = [...Array(20).keys()]
     this.shuffle(pieces)
     for (let i = 0; i < 20; i++) {
-      if (i + 1 == 11) continue;
+      if (pieces[i] + 1 == 11) continue;
       arr.push(
         <Draggable>
           <img
