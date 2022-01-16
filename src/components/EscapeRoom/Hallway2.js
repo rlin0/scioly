@@ -66,15 +66,8 @@ export default class Hallway2 extends Component {
   }
 
   handleSubmitMechanics = (code) => {
-    if (code === masterPW || code === "X66R19") {
+    if (code === masterPW || code === "Brachistochrone") {
       this.props.putMechanicsUnlocked()
-      return true
-    } else return false
-  }
-
-  handleSubmitMeme = (code) => {
-    if (code === masterPW || code === "42069") {
-      this.props.putMemeUnlocked()
       return true
     } else return false
   }

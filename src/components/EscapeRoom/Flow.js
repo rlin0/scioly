@@ -68,7 +68,7 @@ export default class Flow extends Component {
             style={{
               position: "absolute",
               top: "25%",
-              left: "15%",
+              left: "35%",
             }}
           >
             <GridList

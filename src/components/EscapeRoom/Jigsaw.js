@@ -20,6 +20,7 @@ export default class Jigsaw extends Component {
     var pieces = [...Array(20).keys()]
     this.shuffle(pieces)
     for (let i = 0; i < 20; i++) {
+      if (i + 1 == 11) continue;
       arr.push(
         <Draggable>
           <img
@@ -27,7 +28,6 @@ export default class Jigsaw extends Component {
               left: `${(i % width) * (size + padding)}px`,
               top: `${Math.floor(i / width) * (size + padding)}px`,
               position: "absolute",
-              height: "70px",
             }}
             src={`${S3Url}/er/jigsaw/piece${pieces[i] + 1}.png`}
           // src={`https://averycorp.s3.us-east-1.amazonaws.com/er/jigsaw/Gear${pieces[i] + 1}.png`}

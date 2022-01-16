@@ -49,6 +49,7 @@ class Team(models.Model):
     end_ts = models.PositiveBigIntegerField(default=None,
                                             blank=True,
                                             null=True)
+    end_pst = models.DateTimeField(default=None, blank=True, null=True)
 
     def __str__(self):
         """String for representing the Model object."""

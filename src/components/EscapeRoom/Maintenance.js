@@ -4,7 +4,6 @@ import { Link } from "react-router-dom"
 import { S3Url, getBit } from "../../helpers.js"
 import FeedbackBarToggle from "../UI/FeedbackBarToggle"
 import txt from "../../text/er.json"
-import ZoomModal from "../UI/ZoomModal"
 
 const hallway2 = {
   left: "40.83%",
@@ -66,11 +65,6 @@ export default class Maintenance extends Component {
       <>
         <img src={`${S3Url}/er/Maintenance.png`} width="100%" />
         <Link style={hallway2} to="/er/hallway2" />
-        {!getBit(this.props.mcMerchant, 3) && this.props.scanningUnlocked ? (
-          <div style={statue} onClick={() => this.props.putMCMerchant(3)} />
-        ) : (
-          <FeedbackBarToggle text={txt.statueYellow} style={statue} />
-        )}
 
         {!getBit(this.props.mcSpy, 3) && this.props.equipped === "inkwell" ? (
           <Link

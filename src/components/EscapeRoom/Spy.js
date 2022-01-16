@@ -188,7 +188,9 @@ export default class Spy extends Component {
         <LockModal
           className={styles.hologramBottom}
           handleSubmit={this.handleHologramSubmit}
-        />
+        >
+          <h3>My favorite event is It’s About Time</h3>
+        </LockModal>
 
         {this.props.hologramUnlocked && !getBit(this.props.mcSpy, 2) && (
           <>

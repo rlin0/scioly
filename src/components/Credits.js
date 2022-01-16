@@ -1,14 +1,15 @@
 import React, { Component } from "react"
-import { Button, Typography, TextField } from "@material-ui/core"
-import axios from "axios"
-import { Link } from "react-router-dom"
-import { S3Url } from "../helpers"
-import Grid from "@material-ui/core/Grid"
+import {
+  CssBaseline,
+  Grid,
+} from "@material-ui/core"
 
 export default class Credits extends Component {
   render() {
     return (
       <>
+        <CssBaseline />
+
         <Grid container spacing={3} justify="center">
           <Grid item xs={6}>
             <h1 style={{ "color": "#b36200" }}> puzzles + artwork/design </h1>

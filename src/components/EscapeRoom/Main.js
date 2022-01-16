@@ -1,16 +1,13 @@
 import React, { Component } from "react"
 import styles from "./styles.module.css"
-import Clock from "react-clock"
 import "react-clock/dist/Clock.css"
 import { withRouter, Link } from "react-router-dom"
 import { S3Url, masterPW } from "../../helpers.js"
 import LockModal from "../UI/LockModal"
-import FeedbackBar from "../UI/FeedbackBar"
 import txt from "../../text/er.json"
 import ZoomModal from "../UI/ZoomModal"
-import TabBox from "../UI/TabBox"
-import TabBoxServer from "../UI/TabBoxServer"
 import FeedbackBarToggle from "../UI/FeedbackBarToggle"
+import { Button } from "@material-ui/core"
 
 const hallway1 = {
   left: "82.33%",
@@ -174,7 +171,11 @@ class Main extends Component {
         </ZoomModal>
         <div onClick={this.props.submitFinalPuzzle}>
           <ZoomModal style={portal} >
-            {this.props.done ? <h1>You have now collected all the pieces just in time to leave and go to the awards ceremony! Congratulations!</h1> :
+            {this.props.done ? <>
+              <h1>You have now collected all the pieces just in time to leave and go to the awards ceremony! Congratulations!
+              </h1>
+              <Link to='/leaderboard'><Button>Leaderboard</Button></Link>
+            </> :
               <h1>You don't seem to have all the keys yet. Keep looking!</h1>}
           </ZoomModal>
         </div>

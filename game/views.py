@@ -4,10 +4,11 @@ from .models import Profile, Team, MadLib, Puzzle, PuzzleSubmission, Inventory, 
 from rest_framework.decorators import api_view
 from django.contrib.auth.models import User
 from django.http import JsonResponse
-from datetime import timedelta
+from datetime import datetime, timedelta
 from django.utils import timezone
 import time
 import secrets
+from pytz import timezone
 
 
 class ProfileView(viewsets.ModelViewSet):
@@ -236,6 +237,7 @@ def end(request):
         t = Team.objects.get(id=team_id)
         if t.end_ts == None:
             t.end_ts = int(time.time())
+            t.end_pst = datetime.now()
             t.save()
         return JsonResponse({
             'success': True,
@@ -251,11 +253,15 @@ def end(request):
 def leader(request):
     try:
         teams = {}
+        teams_pst = {}
         for t in Team.objects.all():
             if t.start_ts is not None and t.end_ts is not None:
                 teams[t.name] = t.end_ts - t.start_ts
+                teams_pst[t.name] = t.end_pst.astimezone(
+                    timezone('US/Pacific')).strftime("%Y-%m-%d %H:%M:%S")
         sorted_teams = sorted(teams.items(), key=lambda kv: kv[1])
-        sorted_teams = [[t[0], str(timedelta(seconds=t[1]))]
+        sorted_teams = [[t[0],
+                         str(timedelta(seconds=t[1])), teams_pst[t[0]]]
                         for t in sorted_teams]
         return JsonResponse({'success': True, 'teams': sorted_teams})
     except Exception as e:

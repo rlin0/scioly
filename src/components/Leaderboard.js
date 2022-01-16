@@ -11,6 +11,7 @@ import Paper from '@material-ui/core/Paper';
 const columns = [
     { id: 'name', label: 'Name', minWidth: 170 },
     { id: 'time', label: 'Time', minWidth: 100 },
+    { id: 'pst', label: 'Finish time in PST', minWidth: 100 },
 ]
 
 export default class Leaderboard extends Component {
@@ -27,7 +28,7 @@ export default class Leaderboard extends Component {
             .then((res) => {
                 this.setState({
                     teams: res.data.teams.map((t) => {
-                        return { name: t[0], time: t[1] }
+                        return { name: t[0], time: t[1], pst: t[2] }
                     })
                 })
             })

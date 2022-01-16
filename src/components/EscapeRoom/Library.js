@@ -127,6 +127,11 @@ export default class Library extends Component {
     this.props.putMCMerchant(2)
   }
 
+  handleBookClick2 = () => {
+    if (getBit(this.props.mcMerchant, 3)) return
+    this.props.putMCMerchant(3)
+  }
+
   handleComputerClick = () => {
     if (this.props.equipped === "usb") this.setState({ computerUnlocked: true })
     else this.setState({ computerTxt: true })
@@ -143,6 +148,7 @@ export default class Library extends Component {
             src={S3Url + "/er/orange_book.png"}
             alt="orange book"
             style={{ width: "500px", height: "600px" }}
+            onClick={this.handleBookClick2}
           />
         </ZoomModal>
         <ZoomModal style={bookRed}>

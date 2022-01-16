@@ -1,7 +1,6 @@
 import React, { Component } from "react"
 import styles from "./styles.module.css"
 import { S3Url, getBit, masterPW } from "../../helpers.js"
-import LockModal from "../UI/LockModal"
 import FeedbackBar from "../UI/FeedbackBar"
 import FeedbackBarToggle from "../UI/FeedbackBarToggle"
 import txt from "../../text/er.json"
@@ -53,9 +52,9 @@ const cities = {
 }
 
 const paper = {
-  left: "26.33%",
-  top: "74.13%",
-  width: "6.08%",
+  left: "43%",
+  top: "74.75%",
+  width: "4.67%",
   height: "5%",
   position: "absolute",
   display: "block",
@@ -97,13 +96,6 @@ const statue = {
 }
 
 const pics = [
-  "bigben",
-  "hagia",
-  "wall",
-  "colosseum",
-  "canald",
-  "rio",
-  "triangle",
   "world-map-numbered",
 ]
 
@@ -111,13 +103,6 @@ export default class Merchant extends Component {
   constructor(props) {
     super(props)
     this.state = { mapClick: false, citiesClick: false }
-  }
-
-  handleScanningModalSubmit = (code) => {
-    if (code === masterPW || code === "86712") {
-      this.props.putScanningUnlocked()
-      return true
-    } else return false
   }
 
   handleMCClick = () => {
@@ -145,17 +130,6 @@ export default class Merchant extends Component {
           />
         )}
 
-        <div style={map} onClick={() => this.setState({ mapClick: true })} />
-        {this.state.mapClick && (
-          <FeedbackBar
-            text={txt.map}
-            closed={() => this.setState({ mapClick: false })}
-          />
-        )}
-        <div
-          style={cities}
-          onClick={() => this.setState({ citiesClick: true })}
-        />
         {pics.map((it) => {
           return (
             <ZoomModal className={styles[it]}>
@@ -169,39 +143,9 @@ export default class Merchant extends Component {
           )
         })}
 
-        {this.state.citiesClick && (
-          <FeedbackBar
-            text={txt.cities}
-            closed={() => this.setState({ citiesClick: false })}
-          />
-        )}
         <FeedbackBarToggle style={can} text={txt.can} />
         <FeedbackBarToggle style={plant} text={txt.plant} />
-        <FeedbackBarToggle style={statue} text={txt.statueRed} />
 
-        {this.props.scanningUnlocked ? (
-          <ZoomModal className={styles.scanningDevice}>
-            <img
-              src={`${S3Url}/er/statue_yellow.png`}
-              alt="yellow statue"
-              height="500px"
-              width="auto"
-            />
-          </ZoomModal>
-        ) : (
-          <LockModal
-            className={styles.scanningDevice}
-            handleSubmit={this.handleScanningModalSubmit}
-            display={
-              <img
-                src={`${S3Url}/er/statue_yellow.png`}
-                alt="yellow statue"
-                height="500px"
-                width="auto"
-              />
-            }
-          />
-        )}
 
         <Link to="/er/Hallway1" style={hallway1} />
       </>
