@@ -4,17 +4,7 @@ import GridListTile from "@material-ui/core/GridListTile"
 import { Button } from "@material-ui/core"
 import { S3Url } from "../../helpers.js"
 import { Link } from "react-router-dom"
-
-const maintenance = {
-  left: "72.75%",
-  top: "0%",
-  width: "27.25%",
-  height: "99.88%",
-  position: "absolute",
-  display: "block",
-  zIndex: "5",
-  overflow: "hidden",
-}
+import styles from "./styles.module.css"
 
 export default class Flow extends Component {
   constructor(props) {
@@ -62,7 +52,9 @@ export default class Flow extends Component {
             backgroundPosition: "center",
           }}
         >
-          <Link style={maintenance} to="/er/maintenance" />
+          <Link className={styles.maintenance} to="/er/maintenance" />
+          <Link className={styles.maintenance2} to="/er/maintenance" />
+          <Link className={styles.maintenance3} to="/er/maintenance" />
 
           <div
             style={{

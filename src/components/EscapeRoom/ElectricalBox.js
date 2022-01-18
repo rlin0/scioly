@@ -9,6 +9,7 @@ import {
   Puzzle0_5,
 } from "./FlowPuzzles"
 import Forbidden from "../Forbidden.js"
+import styles from "./styles.module.css"
 
 const maintenance = {
   left: "85%",
@@ -61,31 +62,35 @@ export default class ElectricalBox extends Component {
 
     this.props.putMCSpy(3)
     return (
-      <div
-        style={{
-          height: "100vh",
-          backgroundImage: `url(${S3Url + "/er/electrical.png"})`,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "100% 100%",
-          backgroundPosition: "center",
-        }}
-      >
-        <Link style={maintenance} to="/er/maintenance" />
-        <Link style={maintenance2} to="/er/maintenance" />
-        <Link style={maintenance3} to="/er/maintenance" />
+      <>
+        <Link className={styles.maintenance} to="/er/maintenance" />
+        <Link className={styles.maintenance2} to="/er/maintenance" />
+        <Link className={styles.maintenance3} to="/er/maintenance" />
 
         <div
           style={{
-            position: "absolute",
-            top: "25%",
-            left: "15%",
-            width: "50%",
-            height: "50%",
+            height: "100vh",
+            backgroundImage: `url(${S3Url + "/er/electrical.png"})`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "100% 100%",
+            backgroundPosition: "center",
           }}
         >
-          <p>What are you still waiting around for?</p>
+
+
+          <div
+            style={{
+              position: "absolute",
+              top: "25%",
+              left: "15%",
+              width: "50%",
+              height: "50%",
+            }}
+          >
+            <p>What are you still waiting around for?</p>
+          </div>
         </div>
-      </div>
+      </>
     )
   }
 }
