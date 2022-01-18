@@ -85,10 +85,10 @@ const painting2 = {
 }
 
 const painting3 = {
-  left: "37.67%",
-  top: "44.25%",
-  width: "4.67%",
-  height: "10.25%",
+  left: "37.17%",
+  top: "33.5%",
+  width: "7.25%",
+  height: "14.12%",
   position: "absolute",
   display: "block",
   zIndex: "7",

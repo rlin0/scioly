@@ -11,10 +11,33 @@ import {
 import Forbidden from "../Forbidden.js"
 
 const maintenance = {
-  left: "72.75%",
+  left: "85%",
+  top: "0.75%",
+  width: "14.67%",
+  height: "98.5%",
+  position: "absolute",
+  display: "block",
+  zIndex: "5",
+  overflow: "hidden",
+}
+
+const maintenance2 = {
+  left: "0%",
   top: "0%",
-  width: "27.25%",
-  height: "99.88%",
+  width: "25.83%",
+  height: "98.5%",
+  position: "absolute",
+  display: "block",
+  zIndex: "5",
+  overflow: "hidden",
+}
+
+
+const maintenance3 = {
+  left: "26.17%",
+  top: "0%",
+  width: "47.83%",
+  height: "14.75%",
   position: "absolute",
   display: "block",
   zIndex: "5",
@@ -48,6 +71,8 @@ export default class ElectricalBox extends Component {
         }}
       >
         <Link style={maintenance} to="/er/maintenance" />
+        <Link style={maintenance2} to="/er/maintenance" />
+        <Link style={maintenance3} to="/er/maintenance" />
 
         <div
           style={{

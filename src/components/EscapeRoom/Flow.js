@@ -75,7 +75,7 @@ export default class Flow extends Component {
               cellHeight={40}
               spacing={0}
               cols={this.props.dim}
-              style={{ width: "40%" }}
+              style={{ width: "60%" }}
             >
               {Array.from(this.props.tileInitial.keys()).map((key) => {
                 let value = this.props.tileInitial.get(key)

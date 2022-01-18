@@ -68,6 +68,11 @@ div.incorrect {
   cursor: pointer;
 }
 
+.option {
+  background-color: black;
+  color: white;
+}
+
 div.login-terminal {
   position: relative;
   height: 100vh;

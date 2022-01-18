@@ -71,8 +71,7 @@ export default class Header extends Component {
         <Toolbar>
           <SideBar />
           <Typography variant="h6" style={{ color: "white" }}>
-            WELCOME, {this.props.username.toUpperCase()}. TEAM{" "}
-            {this.props.team.toUpperCase()}.
+            WELCOME, {this.props.username.toUpperCase()}.
           </Typography>
           {this.props.start_ts != null && this.state.time != null && <h4 style={{ color: "white", fontFamily: "Bergen Mono" }}>{this.state.time}</h4>}
           <Button onClick={this.props.logout} size="large">

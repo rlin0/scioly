@@ -79,9 +79,12 @@ export default class Login extends Component {
             <button type="submit" className="login-button">
               LOGIN
             </button>
-            <Link to='/register'><button className="login-button">
-              REGISTER YOUR TEAM
-            </button></Link>
+
+            <button className="login-button">
+              <Link to='/register' style={{ color: "white" }}>
+                REGISTER YOUR TEAM
+                </Link>
+            </button>
           </form>
         </div>
         <div className="login-scanline" />

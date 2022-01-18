@@ -14,6 +14,7 @@ export default class Register extends Component {
             name: "",
             numMembers: 1,
             taken: false,
+            tooLong: false,
             success: false,
             users: [],
         }
@@ -22,7 +23,11 @@ export default class Register extends Component {
     handleSubmit = async (e) => {
         e.preventDefault()
         if (this.state.name.length === 0) {
-            this.setState({ taken: false })
+            this.setState({ taken: false, tooLong: false })
+            return
+        }
+        if (this.state.name.length > 20) {
+            this.setState({ taken: false, tooLong: true })
             return
         }
         // window.location.href = '/'
@@ -34,9 +39,14 @@ export default class Register extends Component {
             .then((res) => {
                 if (res.data.success) {
                     if (res.data.taken) {
-                        this.setState({ incorrect: true })
+                        this.setState({ taken: true })
                     } else {
-                        this.setState({ success: true, users: res.data.users })
+                        this.setState({
+                            success: true,
+                            taken: false,
+                            tooLong: false,
+                            users: res.data.users
+                        })
                     }
                 } else console.error(res.data)
             })
@@ -88,21 +98,32 @@ export default class Register extends Component {
                                         this.setState({ numMembers: target.value })
                                     }
                                 >
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
+                                    <option value="1" className="option">1</option>
+                                    <option value="2" className="option">2</option>
+                                    <option value="3" className="option">3</option>
                                 </select>
                             </div>
 
                             <div className="incorrect">
-                                {this.state.takem && <p>Team name is already taken.</p>}
+                                {this.state.taken && <p>Team name is already taken.</p>}
                             </div>
-                            <button type="submit" className="login-button">
-                                CREATE ACCOUNTS
-            </button>
-                            <Link to='/'><button className="login-button">
-                                BACK
-            </button></Link>
+                            <div className="incorrect">
+                                {this.state.tooLong && <p>Team name must be less than 20 characters.</p>}
+                            </div>
+
+                            <div>
+                                <button type="submit" className="login-button">
+                                    CREATE ACCOUNTS
+                                </button>
+                            </div>
+                            <div>
+                                <button className="login-button">
+                                    <Link to='/' style={{ color: "white" }}>
+                                        BACK
+                                    </Link>
+                                </button>
+                            </div>
+
                         </form>}
 
 
