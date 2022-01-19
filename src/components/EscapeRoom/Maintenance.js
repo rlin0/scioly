@@ -66,7 +66,7 @@ export default class Maintenance extends Component {
         <img src={`${S3Url}/er/Maintenance.png`} width="100%" />
         <Link style={hallway2} to="/er/hallway2" />
 
-        {!getBit(this.props.mcSpy, 3) && this.props.equipped === "inkwell" ? (
+        {this.props.equipped === "inkwell" ? (
           <Link
             to="/er/electrical"
             className={styles.electrical}

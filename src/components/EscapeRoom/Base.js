@@ -13,7 +13,7 @@ import axios from "axios"
 import CloseIcon from "@material-ui/icons/Close"
 import styles from "./styles.module.css"
 import { withRouter } from "react-router-dom"
-import { S3Url, masterPW, setBit, countSetBits } from "../../helpers"
+import { S3Url, masterPW, setBit, getBit, countSetBits } from "../../helpers"
 import MC from "./MC"
 import ERIntro from "./ERIntro"
 
@@ -141,6 +141,7 @@ class ER extends Component {
   }
 
   putMCMerchant = (id) => {
+    if (getBit(this.state.mcMerchant, id)) return
     const updated = setBit(this.state.mcMerchant, id)
     axios
       .patch(`/api/erstate/${this.props.userId}/`, { merchant_mc: updated })
@@ -156,6 +157,7 @@ class ER extends Component {
   }
 
   putMCMechanic = (id) => {
+    if (getBit(this.state.mcMechanic, id)) return
     const updated = setBit(this.state.mcMechanic, id)
     axios
       .patch(`/api/erstate/${this.props.userId}/`, { mechanic_mc: updated })
@@ -171,6 +173,7 @@ class ER extends Component {
   }
 
   putMCSpy = (id) => {
+    if (getBit(this.state.mcSpy, id)) return
     const updated = setBit(this.state.mcSpy, id)
     axios
       .patch(`/api/erstate/${this.props.userId}/`, { spy_mc: updated })
@@ -402,74 +405,79 @@ class ER extends Component {
   renderItems = () => {
     return (
       <>
-        {items.map((it) => {
-          return (
-            this.state[it] && (
-              <>
-                <label>
-                  <input
-                    style={{ opacity: "0" }}
-                    type="radio"
-                    name="inventory"
-                    value={it}
-                    onChange={this.onItemChanged}
-                  />
-                  <Grid item xs={3}>
-                    <img
-                      src={`${S3Url}/er/${it}.png`}
-                      style={{
-                        cursor: "pointer",
-                        borderColor: "red",
-                        border:
-                          this.state.selected === it ? "1px solid red" : "0px",
-                        width: "50px",
-                        height: "50px",
-                      }}
-                      alt={it}
+        <Grid container style={{ flexGrow: "1" }}>
+
+          {items.map((it) => {
+            return (
+              this.state[it] && (
+                <>
+                  <label>
+                    <input
+                      style={{ opacity: "0" }}
+                      type="radio"
+                      name="inventory"
+                      value={it}
+                      onChange={this.onItemChanged}
                     />
-                  </Grid>
-                </label>
-              </>
+                    <Grid item xs={3}>
+                      <img
+                        src={`${S3Url}/er/${it}.png`}
+                        style={{
+                          cursor: "pointer",
+                          borderColor: "red",
+                          border:
+                            this.state.selected === it ? "2px solid white" : "0px",
+                          width: "50px",
+                          height: "50px",
+                        }}
+                        alt={it}
+                      />
+                    </Grid>
+                  </label>
+                </>
+              )
             )
-          )
-        })}
-        <Grid item xs={3}>
-          <img
-            src={`${S3Url}/er/mc_merchant.png`}
-            style={{
-              cursor: "pointer",
-              width: "50px",
-              height: "50px",
-            }}
-            alt="mcMerchant"
-          />
-          <p>x {countSetBits(this.state.mcMerchant)}</p>
+          })}
         </Grid>
+        <Grid container style={{ flexGrow: "1" }}>
+          <Grid item xs={3}>
+            <img
+              src={`${S3Url}/er/mc_merchant.png`}
+              style={{
+                cursor: "pointer",
+                width: "50px",
+                height: "50px",
+              }}
+              alt="mcMerchant"
+            />
+            <p>x {countSetBits(this.state.mcMerchant)}</p>
+          </Grid>
 
-        <Grid item xs={3}>
-          <img
-            src={`${S3Url}/er/mc_mechanic.png`}
-            style={{
-              cursor: "pointer",
-              width: "50px",
-              height: "50px",
-            }}
-            alt="mcMechanic"
-          />
-          <p>x {countSetBits(this.state.mcMechanic)}</p>
-        </Grid>
+          <Grid item xs={3}>
+            <img
+              src={`${S3Url}/er/mc_mechanic.png`}
+              style={{
+                cursor: "pointer",
+                width: "50px",
+                height: "50px",
+              }}
+              alt="mcMechanic"
+            />
+            <p>x {countSetBits(this.state.mcMechanic)}</p>
+          </Grid>
 
-        <Grid item xs={3}>
-          <img
-            src={`${S3Url}/er/mc_spy.png`}
-            style={{
-              cursor: "pointer",
-              width: "50px",
-              height: "50px",
-            }}
-            alt="mcSpy"
-          />
-          <p>x {countSetBits(this.state.mcSpy)}</p>
+          <Grid item xs={3}>
+            <img
+              src={`${S3Url}/er/mc_spy.png`}
+              style={{
+                cursor: "pointer",
+                width: "50px",
+                height: "50px",
+              }}
+              alt="mcSpy"
+            />
+            <p>x {countSetBits(this.state.mcSpy)}</p>
+          </Grid>
         </Grid>
       </>
     )
@@ -537,14 +545,12 @@ class ER extends Component {
             </IconButton>
           </DialogTitle>
           <DialogContent>
-            <Grid container style={{ flexGrow: "1" }}>
-              {this.renderItems()}
-            </Grid>
+            {this.renderItems()}
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.remove}>Remove</Button>
             <Button onClick={this.equip}>Equip</Button>
             <Button onClick={this.unequip}>Unequip</Button>
+            <Button onClick={this.remove}>Remove</Button>
             <Button onClick={this.reset}>Reset</Button>
           </DialogActions>
         </Dialog>

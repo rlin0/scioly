@@ -22,7 +22,7 @@ const hallway1 = {
 
 const toolcase = {
   left: "82.83%",
-  top: "44.13%",
+  top: "46.13%",
   width: "6.92%",
   height: "9.63%",
   position: "absolute",
@@ -33,7 +33,7 @@ const toolcase = {
 
 const inkwell = {
   left: "85.92%",
-  top: "48.25%",
+  top: "50.25%",
   width: "2.5%",
   height: "4%",
   position: "absolute",
@@ -127,7 +127,7 @@ export default class Spy extends Component {
   }
 
   handleComputerClick = () => {
-    if (this.props.equipped === "usb" && !getBit(this.props.mcSpy, 1)) {
+    if (this.props.equipped === "usb") {
       this.props.putMCSpy(1)
     }
   }
