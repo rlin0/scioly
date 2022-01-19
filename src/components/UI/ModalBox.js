@@ -58,10 +58,11 @@ const DialogActions = withStyles((theme) => ({
 // you can optionally include a path so the button directs you to a new page (otherwise it just closes the modal)
 // usage: <ModalBox title="Puzzle Title" text="This is some info about your puzzle." buttonText="GO" buttonTo={path} />
 export default function ModalBox(props) {
-  const { title, children, buttonText, buttonTo } = props
+  const { title, children, buttonText, buttonTo, closeAction } = props
   const [open, setOpen] = React.useState(true)
 
   const handleClose = () => {
+    closeAction()
     setOpen(false)
   }
 

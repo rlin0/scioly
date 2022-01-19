@@ -127,7 +127,6 @@ class ER extends Component {
   }
 
   submitFinalPuzzle = () => {
-    console.log("clicked")
     if (this.state.mcMechanic == 7 && this.state.mcMerchant == 7 && this.state.mcMerchant == 7) {
       axios
         .post(`/api/er/end`, { teamId: this.props.teamId })
@@ -161,7 +160,6 @@ class ER extends Component {
     axios
       .patch(`/api/erstate/${this.props.userId}/`, { mechanic_mc: updated })
       .then((res) => {
-        console.log("put mechanic")
         this.setState({
           mcMechanic: updated,
           mc: "mechanic",

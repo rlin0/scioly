@@ -157,17 +157,19 @@ class Main extends Component {
           <FeedbackBarToggle text={txt.sewerDenied} className={styles.sewer} />
         )}
         <ZoomModal style={monitor}>
-          <p>
-            The exit to the headquarters can only be opened with the help of several access cards
-            scattered around the area. These access cards belong to 3 teammates that have left for the day.
-            There are 9 cards total, 3 each of a color: find all of them to unlock the exit from the main
-            room. Click on a door to move from room to room. Some rooms are locked and you’ll need to either
-            enter a code on the number pad next to the door, or find another way inside. Certain items can
-            be picked up and will be added to your inventory (accessed by clicking the button on the bottom
-            right). To equip and item, go into the inventory, click on an item, then press ‘equip’.
-            To unequip it, simply press ‘unequip’. If you ever feel starting from the beginning, you can
-            reset everything by pressing ‘reset’.
-          </p>
+          <div style={{ width: "500px" }}>
+            <p>
+              The exit to the headquarters can only be opened with the help of several access cards
+              scattered around the area. These access cards belong to 3 teammates that have left for the day.
+              There are 9 cards total, 3 each of a color: find all of them to unlock the exit from the main
+              room. Click on a door to move from room to room. Some rooms are locked and you’ll need to either
+              enter a code on the number pad next to the door, or find another way inside. Certain items can
+              be picked up and will be added to your inventory (accessed by clicking the button on the bottom
+              right). To equip and item, go into the inventory, click on an item, then press ‘equip’.
+              To unequip it, simply press ‘unequip’. If you ever feel starting from the beginning, you can
+              reset everything by pressing ‘reset’.
+            </p>
+          </div>
         </ZoomModal>
         <div onClick={this.props.submitFinalPuzzle}>
           <ZoomModal style={portal} >

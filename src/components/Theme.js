@@ -97,7 +97,7 @@ const AVERYCORP_THEME = createTheme({
     },
     MuiCssBaseline: {
       "@global": {
-        "@font-face": [ocra],
+        "@font-face": [babapro],
       },
     },
   },
