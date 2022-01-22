@@ -193,6 +193,7 @@ def reset(request):
         e.electrical_box_unlocked = False
         e.hologram_unlocked = False
         e.scanning_unlocked = False
+        e.merchant_unlocked = False
         e.merchant_mc = 0
         e.spy_mc = 0
         e.mechanic_mc = 0
@@ -259,9 +260,8 @@ def leader(request):
                 teams[t.name] = t.end_ts - t.start_ts
                 teams_pst[t.name] = t.end_pst.astimezone(
                     timezone('US/Pacific')).strftime("%Y-%m-%d %H:%M:%S")
-        sorted_teams = sorted(teams.items(), key=lambda kv: kv[1])
-        sorted_teams = [[t[0],
-                         str(timedelta(seconds=t[1])), teams_pst[t[0]]]
+        sorted_teams = sorted(teams_pst.items(), key=lambda kv: kv[1])
+        sorted_teams = [[t[0], str(timedelta(seconds=teams[t[0]])), t[1]]
                         for t in sorted_teams]
         return JsonResponse({'success': True, 'teams': sorted_teams})
     except Exception as e:
