@@ -33,17 +33,6 @@ const picture = {
   overflow: "hidden",
 }
 
-const lockedCloset = {
-  left: "66.33%",
-  top: "11.51%",
-  width: "31.13%",
-  height: "60.96%",
-  zIndex: "5",
-  position: "absolute",
-  display: "block",
-  overflow: "hidden",
-}
-
 const motorcycle = {
   left: "1.83%",
   top: "76.38%",
@@ -84,7 +73,7 @@ export default class Mechanics extends Component {
           alt="locked closet"
           className={styles.closet}
         />
-        <LockModal style={lockedCloset} handleSubmit={this.handleClosetSubmit}>
+        <LockModal className={styles.closet} handleSubmit={this.handleClosetSubmit}>
           <p>
             Adding a twist to We’ve Got Your Number…
             Riddle: Given eight eights (8, 8, 8, 8, 8, 8, 8, 8), you can arrange
